@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="IwaraDownloader.Pages.GetHash"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      NavigationCacheMode="Enabled"
+    mc:Ignorable="d">
+    <Grid>
+
+        <StackPanel
+            MaxWidth="400"
+            HorizontalAlignment="Center"
+            Orientation="Vertical">
+            <ComboBox
+                x:Name="comboBox"
+                x:Uid="comboBox"
+                Margin="{ThemeResource ComboBoxDropdownContentMargin}"
+                HorizontalAlignment="Stretch"
+                Header="选择站点："
+                IsEnabled="False"
+                SelectedIndex="1">
+                <ComboBoxItem x:Uid="ComboBoxItem1" />
+                <ComboBoxItem x:Uid="ComboBoxItem2" />
+            </ComboBox>
+            <DatePicker
+                x:Name="datePicker"
+                HorizontalAlignment="Stretch"
+                DayVisible="False"
+                Header="选择年月" 
+                x:Uid="datePicker"/>
+            <Button
+                x:Name="button"
+                HorizontalAlignment="Center"
+                Click="Button_Click"
+                Content="开始获取hash"
+                x:Uid="GetHashButton"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Width="120" 
+                           x:Uid="Found" />
+                <TextBlock
+                    x:Name="count"
+                    Width="100"
+                    Height="20"
+                    HorizontalTextAlignment="Center" />
+            </StackPanel>
+            <ScrollViewer
+                HorizontalAlignment="Stretch"
+                HorizontalScrollMode="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                VerticalScrollMode="Enabled">
+                <TextBlock
+                    x:Name="textBlock"
+                    FontSize="16"
+                    TextWrapping="Wrap" />
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

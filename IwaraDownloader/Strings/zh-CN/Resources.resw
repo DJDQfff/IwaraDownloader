@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CancelButton.Label" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="comboBox.Header" xml:space="preserve">
+    <value>选择站点</value>
+  </data>
+  <data name="ComboBoxItem1.Content" xml:space="preserve">
+    <value>表站</value>
+  </data>
+  <data name="ComboBoxItem2.Content" xml:space="preserve">
+    <value>里站</value>
+  </data>
+  <data name="CountText1.Text" xml:space="preserve">
+    <value>最大下载数</value>
+  </data>
+  <data name="datePicker.Header" xml:space="preserve">
+    <value>选择年月</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Iwara MMD 下载器</value>
+  </data>
+  <data name="DownloadVideo.Header" xml:space="preserve">
+    <value>下载质量</value>
+  </data>
+  <data name="DownloadVideoItem0.Content" xml:space="preserve">
+    <value>源</value>
+  </data>
+  <data name="DownloadVideoItem1.Content" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="DownloadVideoItem2.Content" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="Found.Text" xml:space="preserve">
+    <value>已找到</value>
+  </data>
+  <data name="GetHash.ExceptionMessage" xml:space="preserve">
+    <value>运行异常</value>
+  </data>
+  <data name="GetHash.Finished" xml:space="preserve">
+    <value>获取完成</value>
+  </data>
+  <data name="GetHashButton.Content" xml:space="preserve">
+    <value>开始获取</value>
+  </data>
+  <data name="Introduce" xml:space="preserve">
+    <value>用于下载 iwara MMD</value>
+  </data>
+  <data name="OpenButton.Content" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="PackageDisplayName" xml:space="preserve">
+    <value>Iwara MMD 下载器</value>
+  </data>
+  <data name="pathButton.Content" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="PauseButton.Label" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="Ping.Error" xml:space="preserve">
+    <value>连接异常，大概率无法使用
+或者更换网络</value>
+  </data>
+  <data name="Ping.Maybe" xml:space="preserve">
+    <value>有点小问题，或许可以使用</value>
+  </data>
+  <data name="Ping.OK" xml:space="preserve">
+    <value>没有问题，应该可以正常使用</value>
+  </data>
+  <data name="RefreshButton.Label" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="ResumeButton.Label" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="SaveFolderText.Text" xml:space="preserve">
+    <value>保存位置</value>
+  </data>
+  <data name="ShowText.Text" xml:space="preserve">
+    <value>检测是否可用中
+请稍候。。。</value>
+  </data>
+  <data name="StartButton.Label" xml:space="preserve">
+    <value>开始</value>
+  </data>
+</root>

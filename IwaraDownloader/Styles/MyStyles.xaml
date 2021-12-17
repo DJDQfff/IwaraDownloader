@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="ButtonStyle_1" TargetType="Button">
+        <Setter Property="Foreground" Value="#FF48BAD6" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <AcrylicBrush TintColor="#FFCAC6B3" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="FontIconStyle_1" TargetType="FontIcon">
+        <Setter Property="Foreground" Value="CornflowerBlue" />
+    </Style>
+    <Style x:Key="ListViewItemStyle_1" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+</ResourceDictionary>

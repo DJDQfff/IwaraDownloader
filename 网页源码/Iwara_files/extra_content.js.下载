@@ -1,0 +1,40 @@
+jQuery(document).ready(function($) {
+	var MOBILE_BREAKPOINT = 768;
+	var typeIndexes = {
+		tall: 0,
+		wide: 0,
+		footer: 0,
+		under: 0,
+		alike: 0,
+		bmore: 0,
+		games: 0,
+		patreon: 0,
+		extra: 0
+	};
+
+
+	var deviceType = ($(document).innerWidth() >= MOBILE_BREAKPOINT) ? 'desktop' : 'mobile';
+	var getArgs = { device: deviceType };
+	var lang = (window.location.search || '').split(/(\?|&)/).find(str => str.startsWith("language"));
+	if (lang) {
+		var langCode = lang.split("=")[1];
+		getArgs.language = langCode;
+	}
+	$.get('/extra_content', getArgs, function(result) {
+		$('.extra-content-block').each(function() {
+			var $this = $(this);
+			var type = $this.data('type');
+
+			if(result[type] && result[type].length) {
+				if(typeIndexes[type] >= result[type].length) {
+					typeIndexes[type] = 0;
+				}
+
+				$this.writeCapture().html(result[type][typeIndexes[type]].content);
+				typeIndexes[type]++;
+			}
+		});
+
+		$('body').trigger('ads_loaded');
+	}, "json");
+});

@@ -1,0 +1,284 @@
+(function($) {
+
+	$(document).ready(function() {
+		// Override Radiocheck init to fix up broken Drupal stuff, <input> needs to be wrapped by a <label> for this
+		// plugin to work properly.
+		$.fn.radiocheck.Constructor.prototype.init = function (type, element, options) {
+		    this.$element = $(element);
+		    this.options = $.extend({}, $.fn.radiocheck.Constructor.DEFAULTS, this.$element.data(), options);
+
+		    var type = this.$element.attr('type');
+		    if(this.$element.parent('label').length == 0) {
+		    	var $siblings = this.$element.siblings('label');
+		    	var $target;
+
+		    	if($siblings.length == 1) {
+		    		$target = $siblings.eq(0);
+		    	} else {
+		    		var id = this.$element.attr('id');
+		    		if(id == undefined) {
+		    			id = Math.random() * 10000;
+		    			this.$element.attr('id', id)
+		    		}
+		    		$target = $('<label for="'+ id +'"></label>');
+		    		$target.insertBefore(this.$element);
+		    	}
+
+		    	$target.addClass(type);
+		    	this.$element.prependTo($target);
+			}
+
+		    if (this.$element.attr('type') == 'checkbox') {
+		      this.$element.addClass(this.options.checkboxClass);
+		      this.$element.after(this.options.checkboxTemplate);
+		    } else if (this.$element.attr('type') == 'radio') {
+		      this.$element.addClass(this.options.radioClass);
+		      this.$element.after(this.options.radioTemplate);
+		    }
+  		};
+
+
+  		$('#hamburger-toggle').on('click', function(e) {
+  			e.preventDefault();
+  			$('.top-menu').toggleClass('hidden-xs');
+  		});
+
+		/**
+		 * Image nodes
+		 */
+		$imageNode = $('.node-image.node-full');
+		$imageNodeFieldItems = $imageNode.find('.content > .field-name-field-images .field-items');
+
+		// If more than one image, create a slider
+		if($imageNode.length && $imageNodeFieldItems.children().length > 1) {
+
+			// Init slick
+			$imageNodeFieldItems.slick({
+				dots: true,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				centerMode: true,
+				variableWidth: true
+			});
+
+			var $video = null;
+			$imageNodeFieldItems.on('beforeChange', function(event, slick, direction) {
+				if($video) $video.pause();
+			});
+			$imageNodeFieldItems.on('afterChange', function(event, slick, direction) {
+				$video = $imageNodeFieldItems.find('.slick-current video').get(0);
+				if($video) $video.play();
+			}).trigger('afterChange');
+		}
+
+		$videoNode = $('.node-video.node-full');
+		if($videoNode.length) {
+			$videoNode.find('.field-name-body').find('.field-item').truncate({
+				'maxLines': 5,
+				'showText': Drupal.t('Show all'),
+				'truncateString': '&nbsp;&#8230;',
+				'animate': true
+			});
+
+			$downloadButton = $('#download-button');
+			$downloadOptions = $('#download-options');
+			$downloadOptionList = $downloadOptions.find('ul');
+
+			$downloadButton.on('click', function(evt) {
+				evt.preventDefault();
+				$downloadOptions.toggleClass('hidden');
+			});
+
+			var availableResolutions = [];
+
+			$.getJSON('/api/video/' + Drupal.settings.theme.video_hash, function(data) {
+
+				var $player = $('#video-player');
+
+				var sources = [];
+				for(var i = 0; i < data.length; i++) {
+					sources.push({
+						src: data[i].uri,
+						type: data[i].mime,
+						label: data[i].resolution
+					});
+
+					availableResolutions.push(data[i].resolution);
+					$downloadOptionList.append('<li><a href="'+ data[i].uri +'" target="_blank"><i class="glyphicon glyphicon-download"></i> '+ data[i].resolution +'</a></li>');
+				}
+
+
+				if(sources.length === 0) {
+					$('#video-processing').removeClass('hidden');
+					$player.addClass('hidden');
+				} else {
+					$player.removeClass('hidden');
+					var selectedResolution = localStorage.getItem("video_resolution") || 'Source';
+
+					if(availableResolutions.indexOf(selectedResolution) === -1) {
+						selectedResolution = availableResolutions[0];
+					}
+
+					videojs.options.flash.swf = "/sites/all/themes/main/js/vendor/video-js.swf";
+					videojs($player[0]).ready(function() {
+						var player = this;
+
+						// Enable plugins
+						player.hotkeys();
+						player.persistvolume();
+						player.loopbutton();
+						player.videoJsResolutionSwitcher({
+							default: selectedResolution
+						});
+
+						if(sources.length) {
+							player.updateSrc(sources);
+						}
+
+						player.currentResolution(selectedResolution);
+
+						player.on('resolutionchange', function() {
+							var new_res = player.currentResolution();
+							localStorage.setItem("video_resolution", new_res.label);
+							console.log("Changed resolution to", new_res.label);
+						});
+
+						// Set focus to the video so that hotkeys work
+						player.on('play', function() {
+							$player.focus();
+						}).trigger('play');
+					});
+				}
+			});
+		}
+
+		// Enable tooltips
+		$('[data-toggle="tooltip"]').tooltip();
+
+		// Handle R18 Warnings
+		var $r18Warning = $('#r18-warning');
+
+		if($r18Warning.length && !Cookies.get('show_adult')) {
+			$r18Warning.show();
+
+			$r18Warning.find('.r18-continue').on('click', function(e) {
+				e.preventDefault();
+				Cookies.set('show_adult', 1);
+				$r18Warning.hide();
+			});
+		}
+
+		/**
+		 * Handle playlist logic
+		 */
+
+		var $playlistWrapper = $('.playlist-button-wrapper');
+		var $playlistButton = $playlistWrapper.find('.add-button');
+		var $playlists = $playlistWrapper.find('.playlists');
+
+		var reloadPlaylists = function(callback) {
+			$.getJSON('/api/playlists', { nid: Drupal.settings.theme.nid }, function(data) {
+				$playlists.find('li').not('.add').remove();
+
+				for(var i = 0; i < data.length; i++) {
+					var $li = $('<li>').addClass('clearfix');
+					var $lb = $('<label for="playlist-cb'+ data[i].nid +'">'+ data[i].title +'</label>');
+					var $cb = $('<input id="playlist-cb'+ data[i].nid +'" type="checkbox" class="playlist-checkbox">');
+					$li.attr('data-nid', data[i].nid);
+					
+					if(data[i].in_list) {
+						$cb.attr('checked', 'checked');
+					}
+
+					$li.append($cb);
+					$li.append($lb);
+					$playlists.find('.playlists-wrapper').prepend($li);
+				}
+
+				$('.playlist-checkbox').radiocheck();
+				callback();
+			});
+		};
+
+		$playlistButton.on('click', function(evt) {
+			evt.preventDefault();
+			$playlists.toggle();
+
+			if($playlists.find('.spinner:visible').length) {
+				reloadPlaylists(function() {
+					$playlists.find('.spinner').remove();
+				});
+			}
+		});
+
+		$playlists.on('click', 'input[type=checkbox]', function(evt) {
+			var $this = $(this);
+			var state = $this.prop('checked');
+
+			var payload = {
+				nid: Drupal.settings.theme.nid,
+				playlist: $this.parents('li').attr('data-nid')
+			};
+
+			$.ajax({
+				method: state ? "PUT" : "DELETE",
+				url: "/api/playlists",
+				data: payload
+			}).error(function() {
+				$this.prop('checked', false);
+			});
+		});
+
+		$playlists.on('click', '.create-playlist', function(evt) {
+			evt.preventDefault();
+			$submitBtn = $(this);
+			$inputField = $submitBtn.parents('.add').find('input');
+
+			$submitBtn.prop('disabled', true);
+
+			$.ajax({
+				method: "POST",
+				url: "/api/playlists",
+				data: {
+					title: $inputField.val()
+				}
+			}).success(function() {
+				reloadPlaylists(function() {
+					$submitBtn.prop('disabled', false);
+					$inputField.val('');
+				});
+			}).error(function() {
+				$submitBtn.prop('disabled', false);
+			});
+		});
+
+		setTimeout(function() {
+			var $playlistSidebar = $('.playlist').find('.videos');
+			if($playlistSidebar.length) {
+				var $currVideo = $playlistSidebar.find('a.active');
+				$playlistSidebar.scrollTop($playlistSidebar.scrollTop() + $currVideo.position().top - $currVideo.height());
+			}
+		}, 1000);
+
+
+
+		/**
+		 * List thumbnail preview
+		 */
+		/*$('.node-video.node-teaser').on('mouseover', function(evt) {
+			var nid = $(this).attr('id').replace('node-', '');
+		});*/
+
+		// External links in new window
+		var hostname = window.location.host.replace('www.', '').replace('ecchi.', '');
+		$('a[href^=http]').each(function() {
+			if($(this).attr('href').indexOf(hostname) === -1) {
+				$(this).attr('target', '_blank');
+			}
+		});
+
+		$(':checkbox').radiocheck();
+		$(':radio').not('.video-thumbnails').radiocheck();
+	});
+})(jQuery);

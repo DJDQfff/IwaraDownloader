@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="IwaraDownloader.Pages.Setting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            x:Name="SaveFolderText"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="保存位置"
+                   x:Uid="SaveFolderText"
+            TextAlignment="Center" />
+        <TextBlock
+            x:Name="pathText"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextAlignment="Center" />
+        <StackPanel
+            Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                x:Name="pathButton"
+                Margin="4"
+                Click="PathButton_Click"
+                    x:Uid="pathButton"
+                Content="更改" />
+            <Button
+                x:Name="OpenButton"
+                Margin="4"
+                Click="OpenButton_Click"
+                    x:Uid="OpenButton"
+                Content="打开" />
+        </StackPanel>
+
+        <TextBlock
+            x:Name="CountText1"
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+                   x:Uid="CountText1"
+            Text="最大下载数" />
+        <TextBlock
+            x:Name="CountText2"
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{x:Bind CountSlider.Value, Mode=OneWay}" />
+        <Slider
+            x:Name="CountSlider"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="8,0,8,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Maximum="10"
+            Minimum="1"
+            PointerReleased="CountSlider_PointerReleased"
+            Value="1" />
+    </Grid>
+</Page>

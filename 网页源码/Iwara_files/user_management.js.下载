@@ -1,0 +1,54 @@
+(function($) {
+	var acceptFriendRequest = function(frid) {
+		return apiRequest({frid: frid}, "PUT", "/api/user/friends");
+	};
+
+	var denyFriendRequest = function(frid) {
+		return apiRequest({frid: frid}, "DELETE", "/api/user/friends");
+	};
+
+	var requestFriend = function(uid) {
+		return apiRequest({uid: uid}, "POST", "/api/user/friends/request");
+	};
+
+	var apiRequest = function(data, method, url) {
+		return $.ajax({
+			method: method,
+			url: url,
+			data: data
+		});
+	};
+
+	$(document).ready(function() {
+		$('.page-user-friends button.remove-friend').on('click', function(evt) {
+			evt.preventDefault();
+			var $row = $(this).parents('tr');
+
+			denyFriendRequest($(this).attr('data-frid')).success(function() {
+				$row.removeClass('warning').addClass('danger');
+				$row.find('.state').html(Drupal.t('Removed'));
+				$row.find('.actions').html('');
+			});
+		});
+
+		$('.page-user-friends button.accept-friend').on('click', function(evt) {
+			evt.preventDefault();
+			var $row = $(this).parents('tr');
+			
+			acceptFriendRequest($(this).attr('data-frid')).success(function() {
+				$row.removeClass('warning').addClass('success');
+				$row.find('.state').html(Drupal.t('Accepted'));
+				$row.find('.actions').html('');
+			});
+		});
+
+		$('a.request-friend').on('click', function(evt) {
+			evt.preventDefault();
+			var $this = $(this);
+
+			requestFriend($this.attr('data-uid')).success(function(data) {
+				$this.parent().html('<i class="glyphicon glyphicon-user"></i> '+ Drupal.t("Friend request sent"));
+			});
+		});
+	});
+})(jQuery);

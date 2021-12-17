@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="IwaraDownloader.Pages.DownloadedVideo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:IwaraDownloader.Models"
+      mc:Ignorable="d">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <CommandBar Grid.Row="0" Background="Transparent">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    x:Name="RefreshButton"
+                    Click="RefreshButton_Click"
+                    Icon="Refresh"
+                    Label="刷新"
+                    x:Uid="RefreshButton"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+        <GridView
+            x:Name="grid"
+            Grid.Row="1"
+            Background="Transparent"
+            IsItemClickEnabled="True"
+            ItemClick="GridView_ItemClick"
+            ItemsSource="{x:Bind mp4Infos, Mode=OneWay}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="models:VideoInfo">
+                    <StackPanel Margin="4" Orientation="Vertical">
+                        <Image
+                            Width="200"
+                            Height="150"
+                            Margin="2"
+                            Source="{x:Bind BitmapImage}" />
+                        <TextBlock
+                            Margin="2"
+                            Text="{x:Bind StorageFile.DisplayName}"
+                            TextAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+</Page>
