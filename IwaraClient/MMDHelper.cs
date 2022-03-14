@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 using IwaraDownloader.Databases.Entities;
 
-namespace IwaraDownloader.Helper
+namespace IwaraClient
 {
     public static class MMDHelper
     {
-        /// <summary> 解析iwara默认下载mmd名（不带扩展名），从中提取hash </summary>
+        /// <summary>
+        /// 解析iwara默认下载mmd名（不带扩展名），从中提取hash
+        /// </summary>
         /// <param name="displayname"> </param>
         /// <returns> </returns>
         public static string GetHashFromOfficialVideoName (this string displayname)
@@ -51,7 +53,7 @@ namespace IwaraDownloader.Helper
         }
 
         /// <summary> 文件名，以Title还是一般名称 </summary>
-        /// <param name="mmd">  </param>
+        /// <param name="mmd"> </param>
         /// <param name="mode"> </param>
         /// <returns> </returns>
         public static string StorageFileName (this MMDInfo mmd, SaveNameMode mode)
@@ -72,7 +74,9 @@ namespace IwaraDownloader.Helper
 
         /// <summary> 获取mmd下载链接json </summary>
         /// <param name="mmd"> </param>
-        /// <returns> Json格式，mmd下载链接集合，包含soucre，720p,360p等不同分辨率的链接 </returns>
+        /// <returns>
+        /// Json格式，mmd下载链接集合，包含soucre，720p,360p等不同分辨率的链接
+        /// </returns>
         public static string ResponseDownloadsJson (this MMDInfo mmd)
         {
             return "https://" + mmd.Type + ".iwara.tv" + "/api/video/" + mmd.Hash;
@@ -80,7 +84,7 @@ namespace IwaraDownloader.Helper
 
         /// <summary> 获取mmd下载链接 </summary>
         /// <param name="mmd"> </param>
-        /// <param name="f">   下载质量 </param>
+        /// <param name="f"> 下载质量 </param>
         /// <returns> Uri类型 </returns>
         public static async Task<Uri> DownloadUri (this MMDInfo mmd, int qualityIndex)
         {
@@ -139,24 +143,25 @@ namespace IwaraDownloader.Helper
         }
 
         /// <summary> 保存文件名称方式枚举 </summary>
-        public enum SaveNameMode
-        {
-            Title,
-            Hash
-        }
+    }
 
-        public class IwaraJson
-        {
-            /// <summary>
-            /// 下载质量 目前为止分为 Source、540p、360p 三种
-            /// </summary>
-            public string resolution { get; set; }
+    public enum SaveNameMode
+    {
+        Title,
+        Hash
+    }
 
-            /// <summary> 相对uri 前面得加上 https: </summary>
-            public Uri uri { get; set; }
+    public class IwaraJson
+    {
+        /// <summary>
+        /// 下载质量 目前为止分为 Source、540p、360p 三种
+        /// </summary>
+        public string resolution { get; set; }
 
-            /// <summary> http媒体类型 固定为 video/mp4 </summary>
-            public string mime { get; set; }
-        }
+        /// <summary> 相对uri 前面得加上 https: </summary>
+        public Uri uri { get; set; }
+
+        /// <summary> http媒体类型 固定为 video/mp4 </summary>
+        public string mime { get; set; }
     }
 }

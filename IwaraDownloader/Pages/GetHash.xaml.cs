@@ -6,8 +6,10 @@ using IwaraDownloader.Models;
 
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
+using IwaraClient;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+// https://go.microsoft.com/fwlink/?LinkId=234238
+// 上介绍了“空白页”项模板
 
 namespace IwaraDownloader.Pages
 {
@@ -16,6 +18,7 @@ namespace IwaraDownloader.Pages
     {
         private int c;
         private Windows.ApplicationModel.Resources.ResourceLoader resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
         public GetHash ()
         {
             this.InitializeComponent();
@@ -40,11 +43,11 @@ namespace IwaraDownloader.Pages
                 //HTML网页源码发生了变更，原解析方法无法使用
                 await new HtmlChanged().ShowAsync();
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //沙比微软，Windows.web.http类无法使用更好的异常类
                 //发生这个一般都是网络请求出了问题
-                string message= resourceLoader.GetString("GetHash/ExceptionMessage");
+                string message = resourceLoader.GetString("GetHash/ExceptionMessage");
                 textBlock.Text += $"\n\n{message}";
             }
             finally

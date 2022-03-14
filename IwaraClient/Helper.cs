@@ -4,7 +4,7 @@ using System.Linq;
 
 using IwaraDownloader.Databases.Entities;
 
-namespace IwaraDownloader.Helper
+namespace IwaraClient
 {
     //TODO:改用正则
     /// <summary> 解析Iwara网页工具类 </summary>

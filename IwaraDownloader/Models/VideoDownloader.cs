@@ -13,8 +13,7 @@ using IwaraDownloader.Helper;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Web;
-
-using static IwaraDownloader.Helper.MMDHelper;
+using IwaraClient;
 
 namespace IwaraDownloader.Models
 {
@@ -23,7 +22,7 @@ namespace IwaraDownloader.Models
         public List<DownloadOperation> activeDownloads { get; } = new List<DownloadOperation>();
         public List<string> hashqueue { get; } = new List<string>();//hash队列，表达“下载中”状态
 
-                                                                    //数据库的状态仅表示是否已下载完成，
+        //数据库的状态仅表示是否已下载完成，
         public ObservableCollection<NotifyProgress> progressInfos { get; } = new ObservableCollection<NotifyProgress>();
 
         private CancellationTokenSource cts;
@@ -81,7 +80,8 @@ namespace IwaraDownloader.Models
                 List<Task> tasks = new List<Task>();
                 foreach (DownloadOperation download in downloads)
                 {
-                    // Attach progress and completion handlers.
+                    // Attach progress and completion
+                    // handlers.
                     tasks.Add(HandleDownloadAsync(download, false));
                 }
 
@@ -157,7 +157,9 @@ namespace IwaraDownloader.Models
         /// 处理单个后台传输任务 移入、移出活动下载队列 处理任务取消、错误 任务结束时开始新下载
         /// </summary>
         /// <param name="download"> </param>
-        /// <param name="start">    为true则开始一个新下载；false则匹配原有下载 </param>
+        /// <param name="start">
+        /// 为true则开始一个新下载；false则匹配原有下载
+        /// </param>
         /// <returns> </returns>
         private async Task HandleDownloadAsync (DownloadOperation download, bool start)
         {
@@ -170,7 +172,8 @@ namespace IwaraDownloader.Models
 
             try
             {
-                // Store the download so we can pause/resume.
+                // Store the download so we can
+                // pause/resume.
 
                 Progress<DownloadOperation> progressCallback = new Progress<DownloadOperation>(DownloadProgress);
                 if (start)
@@ -269,14 +272,17 @@ namespace IwaraDownloader.Models
                     ResponseInformation response = downloadOperation.GetResponseInformation();
 
                     // If you want to stream the response
-                    // data this is a good time to start. download.GetResultStreamAt(0);
+                    // data this is a good time to start.
+                    // download.GetResultStreamAt(0);
                 }
             }
         }
 
-        /// <summary> 接管后台下载任务失败，可能为Iwara被墙了，或者下载链接超过一天失效 </summary>
-        /// <param name="title">    </param>
-        /// <param name="ex">       </param>
+        /// <summary>
+        /// 接管后台下载任务失败，可能为Iwara被墙了，或者下载链接超过一天失效
+        /// </summary>
+        /// <param name="title"> </param>
+        /// <param name="ex"> </param>
         /// <param name="download"> </param>
         /// <returns> </returns>
         private bool IsExceptionHandled (string title, Exception ex, DownloadOperation download = null)

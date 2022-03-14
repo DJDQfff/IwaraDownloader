@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using IwaraDownloader.Databases.Tools;
 using IwaraDownloader.Helper;
-
+using IwaraClient;
 using Windows.Storage;
 
 namespace IwaraDownloader.Models
@@ -16,7 +16,9 @@ namespace IwaraDownloader.Models
         public string OldName { set; get; }//带扩展名
         public string Newname { set; get; }//带扩展名
 
-        /// <summary> 类工厂，若本地数据库中含有hash则正常生成，否则返回null </summary>
+        /// <summary>
+        /// 类工厂，若本地数据库中含有hash则正常生成，否则返回null
+        /// </summary>
         /// <param name="storageFile"> </param>
         /// <returns> </returns>
         public static ReNameWork ChangeNameFactory (StorageFile storageFile)

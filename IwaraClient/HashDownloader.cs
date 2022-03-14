@@ -3,11 +3,10 @@ using System.Threading.Tasks;
 
 using IwaraDownloader.Databases.Entities;
 using IwaraDownloader.Databases.Tools;
-using IwaraDownloader.Helper;
 
-using Windows.Web.Http;
+using System.Net.Http;
 
-namespace IwaraDownloader.Models
+namespace IwaraClient
 {
     /// <summary> 用于下载hash </summary>
     public class HashDownloader

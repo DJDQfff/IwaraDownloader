@@ -135,14 +135,10 @@
     <Compile Include="ContentDialogs\WhetherMoveDownloadedMMD.xaml.cs">
       <DependentUpon>WhetherMoveDownloadedMMD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\MMDHelper.cs" />
-    <Compile Include="Helper\HtmlParser.cs" />
     <Compile Include="Helper\SetDownloadsFolder.cs" />
     <Compile Include="Helper\PickFolder.cs" />
     <Compile Include="Helper\MaxDownloads.cs" />
     <Compile Include="Models\ReNameWork.cs" />
-    <Compile Include="Models\IwaraType.cs" />
-    <Compile Include="Models\HashDownloader.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -306,6 +302,10 @@
     <Folder Include="ValueConverter\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IwaraClient\IwaraClient.csproj">
+      <Project>{bce7fa1a-9ff7-4f93-84dc-1ba4e9ce08f2}</Project>
+      <Name>IwaraClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IwaraDownloader.Database\IwaraDownloader.Databases.csproj">
       <Project>{7f466c93-c25c-4ca7-8121-d103aee3426a}</Project>
       <Name>IwaraDownloader.Databases</Name>
