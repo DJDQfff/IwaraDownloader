@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IwaraDownloader", "IwaraDownloader\IwaraDownloader.csproj", "{FC74FE78-89AF-446B-BAB1-2B00BDDE3BCB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IwaraDownloader.Databases", "IwaraDownloader.Database\IwaraDownloader.Databases.csproj", "{7F466C93-C25C-4CA7-8121-D103AEE3426A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IwaraDatabase", "IwaraDownloader.Database\IwaraDatabase.csproj", "{7F466C93-C25C-4CA7-8121-D103AEE3426A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmptyForMigration", "EmptyForMigration\EmptyForMigration.csproj", "{2C1A4803-C4F4-4F18-93E3-E48456BE3B3B}"
 EndProject

@@ -306,9 +306,9 @@
       <Project>{bce7fa1a-9ff7-4f93-84dc-1ba4e9ce08f2}</Project>
       <Name>IwaraClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IwaraDownloader.Database\IwaraDownloader.Databases.csproj">
+    <ProjectReference Include="..\IwaraDownloader.Database\IwaraDatabase.csproj">
       <Project>{7f466c93-c25c-4ca7-8121-d103aee3426a}</Project>
-      <Name>IwaraDownloader.Databases</Name>
+      <Name>IwaraDatabase</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

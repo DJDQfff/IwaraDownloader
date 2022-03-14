@@ -1,4 +1,4 @@
-﻿namespace IwaraDownloader.Databases.Entities
+﻿namespace IwaraDatabase.Entities
 {
     public class MMDInfo
     {

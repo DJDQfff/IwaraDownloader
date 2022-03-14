@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-using IwaraDownloader.Databases.Entities;
+using IwaraDatabase.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace IwaraDownloader.Databases.Tools
+namespace IwaraDatabase.Operation
 {
     public static class Tools
     {

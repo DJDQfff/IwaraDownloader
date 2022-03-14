@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-using IwaraDownloader.Databases;
-using IwaraDownloader.Databases.Entities;
-using IwaraDownloader.Databases.Tools;
+using IwaraDatabase;
+using IwaraDatabase.Entities;
+using IwaraDatabase.Operation;
 using IwaraDownloader.Helper;
 
 using Windows.Networking.BackgroundTransfer;

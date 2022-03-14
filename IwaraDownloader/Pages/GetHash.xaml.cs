@@ -7,6 +7,7 @@ using IwaraDownloader.Models;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using IwaraClient;
+using IwaraDatabase.Operation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238
 // 上介绍了“空白页”项模板
@@ -36,7 +37,7 @@ namespace IwaraDownloader.Pages
             try
             {
                 await iwaraClient.GetAllHashes();
-                iwaraClient.SaveHashes();
+                Tools.AddWithoutRepeat(iwaraClient.ThisMonth);
             }
             catch (ArgumentException)
             {

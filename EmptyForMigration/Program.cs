@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-using IwaraDownloader.Databases;
+using IwaraDatabase;
 
 namespace EmptyForMigration
 {

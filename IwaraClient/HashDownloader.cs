@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using IwaraDownloader.Databases.Entities;
-using IwaraDownloader.Databases.Tools;
+using IwaraDatabase.Entities;
 
 using System.Net.Http;
 
@@ -27,11 +26,6 @@ namespace IwaraClient
                 Host = $"https://www.iwara.tv";
             if (iwaratype == IwaraType.ecchi)
                 Host = $"https://ecchi.iwara.tv";
-        }
-
-        public void SaveHashes ()
-        {
-            ThisMonth?.AddWithoutRepeat();
         }
 
         /// <summary> 提取所有IwaraMMDHash集合 </summary>

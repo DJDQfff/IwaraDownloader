@@ -1,8 +1,8 @@
-﻿using IwaraDownloader.Databases.Entities;
+﻿using IwaraDatabase.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace IwaraDownloader.Databases
+namespace IwaraDatabase
 {
     public class Database : DbContext
     {

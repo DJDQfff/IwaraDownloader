@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using IwaraDownloader.Databases.Tools;
+using IwaraDatabase.Operation;
 using IwaraDownloader.Helper;
 using IwaraClient;
 using Windows.Storage;

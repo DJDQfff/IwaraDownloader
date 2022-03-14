@@ -18,13 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IwaraDownloader.Database\IwaraDownloader.Databases.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ExtensionMethod">
-      <HintPath>..\..\ExtensionMethod\ExtensionMethod\bin\Debug\netstandard2.0\ExtensionMethod.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\IwaraDownloader.Database\IwaraDatabase.csproj" />
   </ItemGroup>
 
 </Project>

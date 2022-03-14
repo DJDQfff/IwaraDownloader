@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using IwaraDownloader.Databases.Entities;
+using IwaraDatabase.Entities;
 
 namespace IwaraClient
 {
@@ -27,7 +27,9 @@ namespace IwaraClient
             return hash;
         }
 
-        /// <summary> 剔除 Title 中不能用作文件名的字符，并移除两端空白 </summary>
+        /// <summary>
+        /// 剔除 Title 中不能用作文件名的字符，并移除两端空白
+        /// </summary>
         /// <param name="title"> </param>
         /// <returns> </returns>
         public static string RemoveIllegalCharsAsFileName (this string title)

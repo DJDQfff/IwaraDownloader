@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using IwaraDownloader.Databases.Entities;
+using IwaraDatabase.Entities;
 
 namespace IwaraClient
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IwaraDownloader.Databases.Entities
+namespace IwaraDatabase.Entities
 {
     public class MonthInfo
     {
