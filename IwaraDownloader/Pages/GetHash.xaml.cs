@@ -31,7 +31,7 @@ namespace IwaraDownloader.Pages
         {
             button.IsEnabled = false;
             DateTimeOffset dateTimeOffset = datePicker.Date;
-            HashDownloader iwaraClient = new HashDownloader(dateTimeOffset, (IwaraType) comboBox.SelectedIndex);
+            HashDownloader iwaraClient = new HashDownloader(dateTimeOffset, (IwaraWebSiteType) comboBox.SelectedIndex);
             HtmlParser.AddedEvent += AddCount;
             // TODO：加一个progressring 开始下载就显示，停止就不显示
             try

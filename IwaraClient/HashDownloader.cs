@@ -17,14 +17,14 @@ namespace IwaraClient
         public int HashCount { set; get; }
         private int PageAmount;
 
-        public HashDownloader (DateTimeOffset dateTime, IwaraType iwaratype)
+        public HashDownloader (DateTimeOffset dateTime, IwaraWebSiteType iwaratype)
         {
             DateTimeOffset = dateTime;
             ThisMonth = new MonthInfo() { Year = dateTime.Year, Month = dateTime.Month };
 
-            if (iwaratype == IwaraType.www)
+            if (iwaratype == IwaraWebSiteType.www)
                 Host = $"https://www.iwara.tv";
-            if (iwaratype == IwaraType.ecchi)
+            if (iwaratype == IwaraWebSiteType.ecchi)
                 Host = $"https://ecchi.iwara.tv";
         }
 
