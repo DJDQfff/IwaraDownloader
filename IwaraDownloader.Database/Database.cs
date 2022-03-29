@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IwaraDatabase
 {
+    /// <summary>
+    /// 数据库
+    /// </summary>
     public class Database : DbContext
     {
         private readonly string ConnectionString;

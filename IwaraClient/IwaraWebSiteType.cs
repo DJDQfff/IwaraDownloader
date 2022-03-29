@@ -1,9 +1,9 @@
 ﻿namespace IwaraClient
 {
-    /// <summary> 要访问的类型 </summary>
+    /// <summary> Iwara服务器类型 </summary>
     public enum IwaraWebSiteType
     {
-        /// <summary> 普通版 </summary>
+        /// <summary> 全年龄版（但实际上也有很多R18） </summary>
         www,
 
         /// <summary> R18版 </summary>

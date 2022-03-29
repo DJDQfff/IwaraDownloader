@@ -43,6 +43,11 @@ namespace IwaraDatabase.Operation
             return;
         }
 
+        /// <summary>
+        /// 切换这个MMD下载状态
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <param name="trueorfalse"></param>
         public static void SetWhetherDownloaded (this string hash, bool trueorfalse)
         {
             Database database = new Database();
@@ -53,7 +58,7 @@ namespace IwaraDatabase.Operation
             database.SaveChanges();
         }
 
-        /// <summary> 由hash寻找title </summary>
+        /// <summary> 寻找某MMD的名称</summary>
         /// <param name="hash"> mmd的hash </param>
         /// <returns> mmd的title </returns>
         /// <exception cref="InvalidOperationException">

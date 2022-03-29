@@ -4,6 +4,7 @@ using IwaraDatabase;
 
 namespace EmptyForMigration
 {
+    /// <summary> 数据库操作控制台 </summary>
     internal class Program
     {
         private static readonly Database database = new Database(Configuration.path);

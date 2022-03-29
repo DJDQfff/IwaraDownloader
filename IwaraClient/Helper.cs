@@ -7,11 +7,16 @@ using IwaraDatabase.Entities;
 namespace IwaraClient
 {
     //TODO:改用正则
-    /// <summary> 解析Iwara网页工具类 </summary>
+    /// <summary> Iwara网页源码解析工具类 </summary>
     public static class HtmlParser
     {
         public static event Action AddedEvent;
 
+        /// <summary> 获取当月有多少页，每页最多36页（目前是的） </summary>
+        /// <param name="htmlPage">
+        /// html网页源码，注意，这个网页源码，务必是第0页
+        /// </param>
+        /// <returns> </returns>
         public static int GetPageAmount (this string htmlPage)
         {
             int index = htmlPage.IndexOf("pager-last");
@@ -26,15 +31,10 @@ namespace IwaraClient
             return Convert.ToInt32(str3);
         }
 
-        /// <summary> 解析单个mmd详情页面， </summary>
-        /// <returns> </returns>
-        public static MMDInfo ParseSingleDetailPage ()
-        {
-            return null;
-        }
-
-        /// <summary> 解析月份网页，从中提取最多36个MMDHash信息 </summary>
-        /// <param name="htmlPage"> </param>
+        /// <summary>
+        /// 解析月份网页，从中提取MMDHash信息，每页最多36个
+        /// </summary>
+        /// <param name="htmlPage"> 网页源码 </param>
         /// <returns> IwaraMMDHash集合 </returns>
         public static List<MMDInfo> ParseMonthOverviewPage (this string htmlPage)
         {

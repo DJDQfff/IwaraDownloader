@@ -7,13 +7,18 @@ using IwaraDatabase.Entities;
 
 namespace IwaraClient
 {
+    /// <summary> MMD相关操作 </summary>
     public static class MMDHelper
     {
         /// <summary>
-        /// 解析iwara默认下载mmd名（不带扩展名），从中提取hash
+        /// 解析iwara默认下载mmd名（不带扩展名），从中提取hash。
+        /// 如：1571471146_RbaQ2HKzyVcoka2Y3_Source.mp4。
+        /// 它由3部分组成： 1：Unix时间戳，对应文件在Iwara的时间（没有仔细验证）；
+        /// 2：MMD的hash 3：清晰度，有Source、540p、360p几个档次（没有仔细验证）
+        /// 每部分又由下划线连接
         /// </summary>
-        /// <param name="displayname"> </param>
-        /// <returns> </returns>
+        /// <param name="displayname"> 文件名（不带扩展名） </param>
+        /// <returns> MMD的hash </returns>
         public static string GetHashFromOfficialVideoName (this string displayname)
         {
             char c = '_';
@@ -27,9 +32,8 @@ namespace IwaraClient
             return hash;
         }
 
-        /// <summary>
-        /// 剔除 Title 中不能用作文件名的字符，并移除两端空白
-        /// </summary>
+        // TODO 可以提到api库里面去
+        /// <summary> 剔除 Title 中不能用作文件名的字符，并移除两端空白 </summary>
         /// <param name="title"> </param>
         /// <returns> </returns>
         public static string RemoveIllegalCharsAsFileName (this string title)
@@ -39,16 +43,20 @@ namespace IwaraClient
             return filetitle;
         }
 
-        public static string StorageFileName (this string hash, SaveNameMode mode)
+        /// <summary> 设置mmd的保存文件名 </summary>
+        /// <param name="mmdfilename"> mmd名 </param>
+        /// <param name="mode"> 保存方式 </param>
+        /// <returns> </returns>
+        public static string StorageFileName (this string mmdfilename, SaveNameMode mode)
         {
             if (mode == SaveNameMode.Title)
             {
-                string newname = hash.RemoveIllegalCharsAsFileName() + ".mp4";
+                string newname = mmdfilename.RemoveIllegalCharsAsFileName() + ".mp4";
                 return newname;
             }
             if (mode == SaveNameMode.Hash)
             {
-                string newname = hash.Trim() + ".mp4";
+                string newname = mmdfilename.Trim() + ".mp4";
                 return newname;
             }
             return null;
@@ -74,25 +82,25 @@ namespace IwaraClient
             return null;
         }
 
-        /// <summary> 获取mmd下载链接json </summary>
-        /// <param name="mmd"> </param>
+        /// <summary> 获得MMD下载链接获取服务器 </summary>
+        /// <param name="mmd"> MMD信息 </param>
         /// <returns>
-        /// Json格式，mmd下载链接集合，包含soucre，720p,360p等不同分辨率的链接
+        /// 访问这个链接，课程获得mmd的下载地址，地址有时效（未测）
         /// </returns>
         public static string ResponseDownloadsJson (this MMDInfo mmd)
         {
             return "https://" + mmd.Type + ".iwara.tv" + "/api/video/" + mmd.Hash;
         }
 
-        /// <summary> 获取mmd下载链接 </summary>
-        /// <param name="mmd"> </param>
-        /// <param name="f"> 下载质量 </param>
-        /// <returns> Uri类型 </returns>
+        /// <summary> 获取mmd下载地址 </summary>
+        /// <param name="mmd"> MMD信息 </param>
+        /// <param name="f"> 下载质量 ，从0到2, </param>
+        /// <returns> mmd下载地址 </returns>
         public static async Task<Uri> DownloadUri (this MMDInfo mmd, int qualityIndex)
         {
             string apiuri = ResponseDownloadsJson(mmd);
-            string json = await (new HttpClient()).GetStringAsync(apiuri);
-            IwaraJson[] iwaraJsons = JsonSerializer.Deserialize<IwaraJson[]>(json);
+            string json = await (new HttpClient()).GetStringAsync(apiuri);        // 将返回一个JSON，其包含了不同分辨率的MMD下载地址
+            IwaraJson[] iwaraJsons = JsonSerializer.Deserialize<IwaraJson[]>(json); // JSON反序列化
             IwaraJson iwaraJson;
             if (iwaraJsons.Length == 3)
             {

@@ -6,6 +6,8 @@ using Windows.Storage.Pickers;
 
 namespace IwaraDownloader.Helper
 {
+    // TODO 提取出来
+    /// <summary> 文件保存器 </summary>
     public static class PickFolder
     {
         public static async Task<StorageFolder> PickSaveFolderAsync ()

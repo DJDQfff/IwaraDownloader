@@ -4,11 +4,16 @@ using System.Runtime.CompilerServices;
 
 namespace IwaraDownloader.Models
 {
-    /// <summary> 下载进度，用于在进度条上显示进度和状态信息 </summary>
+    /// <summary> 下载进度类，用于在进度条上显示进度和状态信息 </summary>
     public class NotifyProgress : INotifyPropertyChanged
     {
+        /// <summary>
+        /// 通知事件
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// MMDhshs
+        /// </summary>
         private string _hash;
 
         public string Hash

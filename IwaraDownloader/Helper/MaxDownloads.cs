@@ -2,6 +2,9 @@
 
 namespace IwaraDownloader.Helper
 {
+    /// <summary>
+    /// 系统设置：最大同时下载
+    /// </summary>
     public static class MaxDownloads
     {
         public static void SetCount (int i)
