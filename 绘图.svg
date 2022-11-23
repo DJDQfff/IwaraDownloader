@@ -24,14 +24,14 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="2.8934905"
-     inkscape:cx="385.00213"
-     inkscape:cy="434.94182"
+     inkscape:cx="337.30887"
+     inkscape:cy="434.94181"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
     <rect
@@ -46,32 +46,45 @@
        width="135.47651"
        height="45.619642"
        id="rect2234" />
+    <font
+       horiz-adv-x="1024"
+       id="font16702"
+       inkscape:label="字体 1">
+      <font-face
+         units-per-em="1024"
+         id="font-face16704"
+         font-family="SVGFont 1" />
+      <missing-glyph
+         d="M0,0h1000v1024h-1000z"
+         id="missing-glyph16706" />
+    </font>
   </defs>
-  <g
-     inkscape:label="图层 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     sodipodi:insensitive="true">
-    <text
-       xml:space="preserve"
-       transform="scale(0.26458333)"
-       id="text2232"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:DFPingJuW7-B5;-inkscape-font-specification:'DFPingJuW7-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect2234);fill:#000000;fill-opacity:1;stroke:none"><tspan
-         x="193.53711"
-         y="414.42969"
-         id="tspan65593">IWARA</tspan></text>
-  </g>
   <g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="图层 2">
+     inkscape:label="文字：MMDdownloader"
+     style="display:inline">
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,4.4806035,-5.1206897)"
        id="text55282"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:DFPPingJuW7-B5;-inkscape-font-specification:'DFPPingJuW7-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect55284);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="185.24414"
-         y="446.71683"
-         id="tspan65595">MMD Downloader</tspan></text>
+         y="446.69057"
+         id="tspan23766">MMD Downloader</tspan></text>
+  </g>
+  <g
+     inkscape:label="文字：IWARA"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,1.0058497,0.82296797)"
+       id="text2232"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'Juice ITC';-inkscape-font-specification:'Juice ITC, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect2234);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="193.53711"
+         y="412.78906"
+         id="tspan23768">I W A R A</tspan></text>
   </g>
 </svg>
